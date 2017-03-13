@@ -49,7 +49,7 @@ create table STAFF_INFO(
     phone_number int(11) not null,
     email varchar(30),
     pword int(20) not null,
-    sex varchar(6) not null,
+    sex varchar(6),
     degree varchar(30),
     dayofbirth date
 );
@@ -64,7 +64,7 @@ create table USER_INFO(
     phone_number int(11) not null,
     email varchar(30) not null,
     pword varchar(20) not null,
-    sex varchar(6) not null,
+    sex varchar(6),
     job varchar(30),
     degree varchar(30),
     valid boolean,
