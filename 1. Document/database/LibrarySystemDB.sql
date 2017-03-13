@@ -6,7 +6,7 @@ create table BOOK(
     publisher_id int not null,
     publishing_year year not null,
     category_id int not null,
-    short_description varchar(200),
+    short_description varchar(1000),
     brw_tckt_nber int not null,
     valid_status boolean,
     amount int not null,
@@ -152,6 +152,7 @@ insert into publisher_details(publisher_name) value ("Smithsonian Books");
 insert into publisher_details(publisher_name) value ("Cambridge University Press");
 insert into publisher_details(publisher_name) value ("Haole Library");
 insert into publisher_details(publisher_name) value ("Scholastic Press");
+insert into publisher_details(publisher_name) value ("Oxford University Press");
 
 insert into author_details(author_name) value ("Winston Groom");
 insert into author_details(author_name) value ("Dominic Midgley");
@@ -199,6 +200,7 @@ insert into author_details(author_name) value ("Thug Kitchen LLC");
 insert into author_details(author_name) value ("Darren Naish");
 insert into author_details(author_name) value ("Brett L. Walker");
 insert into author_details(author_name) value ("J. K. Rowling ");
+insert into author_details(author_name) value ("Duane W. Roller");
 
 select * from book_category_details;
 select * from author_details;
@@ -234,8 +236,8 @@ values (9781623363581, "Thug Kitchen: The Official Cookbook",20,2014,11,"Eat Lik
 insert into book_author(author_id, isbn) values (43,9781623363581);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
-values (9781588345820, "Dinosaurs: How They Lived and Evolved",8,2016,8,"LEARNING TO LISTEN",0,true,15,1);
-insert into book_author(author_id, isbn) values (37,9781588345820);
+values (9781588345820, "Dinosaurs: How They Lived and Evolved",21,2016,4,"Dinosaurs are one of the most spectacular groups of animals that have ever existed. Many were fantastic, bizarre creatures that still capture our imagination: the super-predator Tyrannosaurus, the plate-backed Stegosaurus, and the long-necked, long-tailed Diplodocus.",0,true,15,1);
+insert into book_author(author_id, isbn) values (44,9781588345820);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
 values (9780521178723, "A Concise History of Japan",21,2015,6,"A Concise History of Japan integrates the pageantry of Japanese history",0,true,12,2);
@@ -268,3 +270,32 @@ insert into book_author(author_id, isbn) values (46,9780590353403);
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
 values (9780439064866, "Harry Potter and the Chamber of Secrets",24,1999,2,"In one of the most hotly anticipated sequel in memory",0,true,20,2);
 insert into book_author(author_id, isbn) values (46,9780439064866);
+insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
+values (978-0199829965, "IELTS Listening Strategies for the Ielts Test",6,2011,12,"",0,true,30,1);
+insert into book_author(author_id, isbn) values (8,978-0199829965);
+
+insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
+values (9876045809747, "Essential Grammer for IELTS",6,2015,12,"",0,true,32,1);
+insert into book_author(author_id, isbn) values (6,9876045809747);
+insert into book_author(author_id, isbn) values (7,9876045809747);
+
+insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
+values (9876045836095, "IELTS Writing Strategies for the Ielts Test",6,2015,12,"",0,true,36,1);
+insert into book_author(author_id, isbn) values (6,9876045836095);
+insert into book_author(author_id, isbn) values (7,9876045836095);
+
+insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
+values (9781570624421, "This Light in Oneself ",25,1999,5,"These selections present the core of Krishnamurti's teaching on meditation, taken from discussions with small groups",0,true,8,2);
+insert into book_author(author_id, isbn) values (38,9781570624421);
+
+insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
+values (9781570624421, "You are the apple of my eye",25,2014,5,"These selections present the core of Krishnamurti's teaching on meditation, taken from discussions with small groups",0,true,8,2);
+insert into book_author(author_id, isbn) values (38,9781570624421);
+
+insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
+values (9876046915577, "Book Girl and the Suicidal Mime",1,2014,2,"For Tohko Amano, a third-year high school student and self-styled book girl, being the head of the literary club is more than just an extracurricular activity. It's her bread and butter...literally! Tohko is actually a literature-gobbling demon, who can be found at all hours of the day munching on torn out pages from all kinds of books. But for Tohko, the real delicacies are hand-written stories. To satisfy her gourmet tastes, she's employed (rather, browbeaten) one Konoha Inoue, who scribbles away each day after school to satisfy Tohko's appetite. But when another student comes knocking on the literary club door for advice on writing love letters, will Tohko discover a new kind of delicacy?",0,true,18,1);
+insert into book_author(author_id, isbn) values (13,9876046915577);
+
+insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
+values (9876045836095, "Cleopatra: A Biography",25,2015,3,"Few personalities from classical antiquity are more famous--yet more poorly understood--than Cleopatra VII, queen of Egypt. In this major biography, Duane Roller reveals that Cleopatra was in fact a learned and visionary leader whose overarching goal was always the preservation of her dynasty and kingdom.",0,true,6,2);
+insert into book_author(author_id, isbn) values (47,9876045836095);
