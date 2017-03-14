@@ -10,4 +10,6 @@ import com.team3.LMS.dto.Ticket;
 @Repository
 public interface TicketDao extends CrudRepository<Ticket, Integer> {
 	Page<Ticket> findAll(Pageable pageable);
+	Ticket findByticketId(int ticketId);
+	void addTicket(Ticket ticket);
 }

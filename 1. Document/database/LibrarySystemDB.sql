@@ -88,10 +88,19 @@ create table PAYMENT(
     fine int,
     payment_id int primary key not null auto_increment
 );
+create table RULES(
+	importance int(1) not null primary key,
+    borrowing_time int not null,
+    fine_per_day int not null,
+    min_left int not null
+);
+
 alter table BOOK 
 add constraint category_id_fk_on_book foreign key (category_id) references BOOK_CATEGORY_DETAILS(category_id);
 alter table BOOK
 add constraint publisher_id_fk_on_book foreign key (publisher_id) references PUBLISHER_DETAILS(publisher_id);
+alter table BOOK 
+add constraint importance_fk_on_book foreign key (importance) references RULES(importance);
 alter table BOOK_AUTHOR
 add constraint isbn_fk_on_book_author foreign key (author_id) references AUTHOR_DETAILS(author_id);
 alter table BOOK_AUTHOR
@@ -114,6 +123,10 @@ add constraint user_id_fk_on_return foreign key (user_id) references TICKET_BOOK
 insert into role (role_name) value ("MEMBER_USER");
 insert into role (role_name) value ("ADMIN");
 insert into role (role_name) value ("GUEST");
+
+insert into rules (importance, borrowing_time, fine, min_left) values (1, 15, 10000, 1);
+insert into rules (importance, borrowing_time, fine, min_left) values (2, 7, 30000, 3);
+insert into rules (importance, borrowing_time, fine, min_left) values (3, 0, 200000, 5);
 
 insert into book_category_details(category_name) value ("Magazine");
 insert into book_category_details(category_name) value ("Fiction");
@@ -270,9 +283,10 @@ insert into book_author(author_id, isbn) values (46,9780590353403);
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
 values (9780439064866, "Harry Potter and the Chamber of Secrets",24,1999,2,"In one of the most hotly anticipated sequel in memory",0,true,20,2);
 insert into book_author(author_id, isbn) values (46,9780439064866);
+
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
-values (978-0199829965, "IELTS Listening Strategies for the Ielts Test",6,2011,12,"",0,true,30,1);
-insert into book_author(author_id, isbn) values (8,978-0199829965);
+values (9786045835807, "IELTS Listening Strategies for the Ielts Test",6,2011,12,"",0,true,30,1);
+insert into book_author(author_id, isbn) values (8,9786045835807);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
 values (9876045809747, "Essential Grammer for IELTS",6,2015,12,"",0,true,32,1);
@@ -280,16 +294,12 @@ insert into book_author(author_id, isbn) values (6,9876045809747);
 insert into book_author(author_id, isbn) values (7,9876045809747);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
-values (9876045836095, "IELTS Writing Strategies for the Ielts Test",6,2015,12,"",0,true,36,1);
+values (9786048554071, "IELTS Writing Strategies for the Ielts Test",6,2015,12,"",0,true,36,1);
 insert into book_author(author_id, isbn) values (6,9876045836095);
 insert into book_author(author_id, isbn) values (7,9876045836095);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
-values (9781570624421, "This Light in Oneself ",25,1999,5,"These selections present the core of Krishnamurti's teaching on meditation, taken from discussions with small groups",0,true,8,2);
-insert into book_author(author_id, isbn) values (38,9781570624421);
-
-insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
-values (9781570624421, "You are the apple of my eye",25,2014,5,"These selections present the core of Krishnamurti's teaching on meditation, taken from discussions with small groups",0,true,8,2);
+values (9781570624421, "This Light in Oneself",25,1999,5,"These selections present the core of Krishnamurti's teaching on meditation, taken from discussions with small groups",0,true,8,2);
 insert into book_author(author_id, isbn) values (38,9781570624421);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)

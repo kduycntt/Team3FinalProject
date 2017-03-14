@@ -25,7 +25,7 @@ public class Book implements Serializable {
 
 	@Id
 	@Column(name = "isbn")
-	private String isbn;
+	private int isbn;
 
 	@Column(name = "amount")
 	private int amount;
@@ -72,11 +72,11 @@ public class Book implements Serializable {
 	public Book() {
 	}
 
-	public String getIsbn() {
+	public int getIsbn() {
 		return this.isbn;
 	}
 
-	public void setIsbn(String isbn) {
+	public void setIsbn(int isbn) {
 		this.isbn = isbn;
 	}
 

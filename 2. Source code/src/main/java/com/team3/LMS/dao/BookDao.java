@@ -10,4 +10,5 @@ import com.team3.LMS.dto.Book;
 @Repository
 public interface BookDao extends CrudRepository<Book, String> {
 	Page<Book> findAll(Pageable pageable);
+	Book findByIsbn(int isbn);
 }

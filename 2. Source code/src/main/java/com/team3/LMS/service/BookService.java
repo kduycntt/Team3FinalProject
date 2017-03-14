@@ -15,7 +15,11 @@ import com.team3.LMS.dto.Book;
 public class BookService {
 	@Autowired
 	private BookDao bookDao;
-
+	
+	public Book findbyIsbn(int isbn){
+		return bookDao.findByIsbn(isbn);
+	}
+	
 	public List<Book> getBookList() {
 		return (List<Book>) bookDao.findAll();
 	}

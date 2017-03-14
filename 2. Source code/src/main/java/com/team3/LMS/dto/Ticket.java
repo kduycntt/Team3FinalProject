@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "ticket")
 public class Ticket implements Serializable {
@@ -29,10 +31,12 @@ public class Ticket implements Serializable {
 	private int borrowNumber;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MM/yyyy") 
 	@Column(name = "borrowed_date")
 	private Date borrowedDate;
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@Column(name = "expired_date")
 	private Date expiredDate;
 	
