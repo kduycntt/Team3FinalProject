@@ -53,9 +53,9 @@ app.config(function($routeProvider){
 	        templateUrl: '/LMS/views/admin/add_user.html',
 	        controller: 'UserController'
 	    })
-	    .when('/userManage/updateuser',{
+	    .when('/userManage/updateuser/:id',{
 	        templateUrl: '/LMS/views/admin/update_user.html',
-	        controller: 'UserController'
+	        controller: 'userDetailCtr'
 	    })
 	    .when('/borrowBook',{
 	        templateUrl: '/LMS/views/admin/borrow_book.html',
@@ -88,7 +88,7 @@ app.config(function($routeProvider){
 	    .when('/test',{
 	        templateUrl: '/LMS/book_management.html',
 	        controller: 'AdminController'
-	    })
+	    })	    
         .otherwise(
             { redirectTo: '/'}
         );
