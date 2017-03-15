@@ -1,3 +1,4 @@
+drop database Library;
 create database Library;
 use Library;
 create table BOOK(
@@ -17,8 +18,8 @@ create table AUTHOR_DETAILS(
     author_name varchar(30) not null
 );
 create table BOOK_AUTHOR(
-	author_id int not null,
-    isbn bigint(13) not null,
+	author_id int,
+    isbn bigint(13),
     constraint pk_author_isbn_book_author primary key (author_id, isbn)
 );
 create table PUBLISHER_DETAILS(
@@ -31,16 +32,14 @@ create table BOOK_CATEGORY_DETAILS(
 );
 create table TICKET(
     borrowed_date date not null,
-    expired_date date not null,
     ticket_id int not null primary key auto_increment,
-    borrow_number int not null,
-    limition_number int
+    user_id int not null,
+    borrow_number int not null
 );
 create table TICKET_BOOK_USER(
 	isbn bigint(13) not null,
-    user_id int not null,
     ticket_id int not null,
-    primary key (isbn, user_id, ticket_id)
+    primary key (isbn, ticket_id)
 );
 create table STAFF_INFO(
 	staff_id int not null primary key auto_increment,
@@ -102,31 +101,31 @@ add constraint publisher_id_fk_on_book foreign key (publisher_id) references PUB
 alter table BOOK 
 add constraint importance_fk_on_book foreign key (importance) references RULES(importance);
 alter table BOOK_AUTHOR
-add constraint isbn_fk_on_book_author foreign key (author_id) references AUTHOR_DETAILS(author_id);
+add constraint isbn_fk_on_book_author foreign key (isbn) references BOOK(isbn);
 alter table BOOK_AUTHOR
-add constraint author_id_fk_on_book_author foreign key (isbn) references BOOK(isbn);
+add constraint author_id_fk_on_book_author foreign key (author_id) references AUTHOR_DETAILS(author_id);
 alter table PAYMENT
 add constraint user_id_fk_on_payment foreign key (user_id) references USER_INFO(user_id);
 alter table USER_ROLE
 add constraint user_id_fk_on_user_role foreign key (user_id) references USER_INFO(user_id);
 alter table USER_ROLE
 add constraint role_id_fk_on_user_role foreign key (role_id) references ROLE(role_id);
-alter table TICKET_BOOK_USER
-add constraint user_id_fk_on_ticket_book_user foreign key (user_id) references USER_INFO(user_id);
+alter table TICKET
+add constraint user_id_fk_on_ticket foreign key (user_id) references USER_INFO(user_id);
 alter table TICKET_BOOK_USER
 add constraint ticket_id_fk_on_ticket_book_user foreign key (ticket_id) references TICKET(ticket_id);
 alter table TICKET_BOOK_USER
 add constraint isbn_fk_on_ticket_book_user foreign key (isbn) references BOOK(isbn);
 alter table RETURN_BOOK
-add constraint user_id_fk_on_return foreign key (user_id) references TICKET_BOOK_USER(user_id);
+add constraint user_id_fk_on_return foreign key (user_id) references TICKET(user_id);
 
 insert into role (role_name) value ("MEMBER_USER");
 insert into role (role_name) value ("ADMIN");
 insert into role (role_name) value ("GUEST");
 
-insert into rules (importance, borrowing_time, fine, min_left) values (1, 15, 10000, 1);
-insert into rules (importance, borrowing_time, fine, min_left) values (2, 7, 30000, 3);
-insert into rules (importance, borrowing_time, fine, min_left) values (3, 0, 200000, 5);
+insert into rules (importance, borrowing_time, fine_per_day, min_left) values (1, 15, 10000, 1);
+insert into rules (importance, borrowing_time, fine_per_day, min_left) values (2, 7, 30000, 3);
+insert into rules (importance, borrowing_time, fine_per_day, min_left) values (3, 0, 200000, 5);
 
 insert into book_category_details(category_name) value ("Magazine");
 insert into book_category_details(category_name) value ("Fiction");
@@ -295,8 +294,8 @@ insert into book_author(author_id, isbn) values (7,9876045809747);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
 values (9786048554071, "IELTS Writing Strategies for the Ielts Test",6,2015,12,"",0,true,36,1);
-insert into book_author(author_id, isbn) values (6,9876045836095);
-insert into book_author(author_id, isbn) values (7,9876045836095);
+insert into book_author(author_id, isbn) values (6,9786048554071);
+insert into book_author(author_id, isbn) values (7,9786048554071);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
 values (9781570624421, "This Light in Oneself",25,1999,5,"These selections present the core of Krishnamurti's teaching on meditation, taken from discussions with small groups",0,true,8,2);
@@ -308,4 +307,4 @@ insert into book_author(author_id, isbn) values (13,9876046915577);
 
 insert into book(isbn, title, publisher_id, publishing_year, category_id, short_description, brw_tckt_nber, valid_status, amount, importance)
 values (9876045836095, "Cleopatra: A Biography",25,2015,3,"Few personalities from classical antiquity are more famous--yet more poorly understood--than Cleopatra VII, queen of Egypt. In this major biography, Duane Roller reveals that Cleopatra was in fact a learned and visionary leader whose overarching goal was always the preservation of her dynasty and kingdom.",0,true,6,2);
-insert into book_author(author_id, isbn) values (47,9876045836095);
+insert into book_author(author_id, isbn) values (47,9876045836095);insert into book_author(author_id, isbn) values (6,9876045836095)
